@@ -1,34 +1,15 @@
-from unittest import case
 
 operand1 = None
 operator = None
 operand2 = None
+result = None
 
 def main():
     ask_user_input()
+    global result
+    result = calculate(operand1,operator, operand2)
+    display_result(operand1, operator ,operand2 , result)
     # Perform the operation based on the operator
-
-    match operator:
-
-        case '+':
-            result = operand1 + operand2
-
-        case'-':
-            result = operand1 - operand2
-
-        case '*':
-            result = operand1 * operand2
-
-        case '/':
-            if operand2 != 0:
-                print("Error: Division by zero is undefined.")
-                return
-            result = operand1 / operand2
-        case _:
-            print("Invalid operator.")
-            return
-
-    print("Result:", result)
 
 def ask_user_input():
     # Get first operand from the user
@@ -43,6 +24,31 @@ def ask_user_input():
     global operand2
     operand2 = float(input("Enter the second operand: "))
 
+def calculate(ope1, oper, ope2):
+    res = None
+    match oper:
+
+        case '+':
+            res = ope1 + ope2
+
+        case'-':
+            res = ope1 - ope2
+
+        case '*':
+            res = ope1 * ope2
+
+        case '/':
+            if ope2 == 0:
+                print("Error: Division by zero is undefined.")
+                return
+            res = ope1 / ope2
+        case _:
+            print("Invalid operator.")
+            return
+    return res
+
+def display_result(ope1, ope, ope2, res):
+    print(str(ope1)+ " " + ope + " " + str(ope2) + " = " + str(res))
 
 # Call the main function to run the program
 main()
